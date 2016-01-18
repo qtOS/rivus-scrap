@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var model = require('../models/Data');
 
 
 
@@ -12,7 +13,13 @@ router.get('/', function(req, res, next) {
       console.log(objIns.sayHello);
     },
     sayHello: "hello I'm the object!"
-  }
+  };
+
+  model.find(function(err, data){
+    if(err){console.log(err)}
+    res.json(data);
+    console.log(data);
+  })
   res.render('index', objIns);
 
 
